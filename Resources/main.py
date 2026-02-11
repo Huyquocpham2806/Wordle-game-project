@@ -37,7 +37,8 @@ def main():
     # "PLAYING": Đang chơi
     # "GAME_OVER": Kết thúc (Thắng/Thua)
     # "ASK RESUME": Hỏi người chơi muốn chơi tiếp game cũ hay không
-    # "CONFRIM_EXIT": Hỏi người chơi chắc chắn muốn trở về home
+    # "CONFRIM_EXIT": Hỏi người chơi chắc chắn muốn trở về menu chọn mode
+    # "HOME_OPTION": Chọn Quit hoặc Logout
     game_state = "MENU" 
     
     # Biến kiểm soát màn hình đăng nhập
@@ -83,6 +84,10 @@ def main():
     btn_cfm_yes = None
     btn_cfm_no = None
 
+    # Biến kiểm soát menu home
+    btn_quit_rect = None
+    btn_logout_rect = None
+
     # --- Hệ thống đồng hồ ---
     start_ticks = 0         # Thời gian bắt đầu chơi (ms)
     time_flow = 0           # Thời gian đã trôi qua (s)
@@ -107,6 +112,7 @@ def main():
                 # Nhưng ở đơn vị ms --> phải chia cho 1000
                 # get_ticks() sẽ ghi nhận thời điểm theo giờ của hệ thống tại chính thời điểm chạy hàm 
                 time_flow = (pygame.time.get_ticks() - start_ticks) // 1000 
+        
         else:
             is_timer_running = False
 
@@ -162,6 +168,9 @@ def main():
                     saved_score = True
                 elif game.result == "l" and not saved_score: # Nếu ván đó thua thì không tính vào tổng thời gian chơi
                     saved_score = True
+        
+        elif game_state == "HOME_OPTION":
+            btn_quit_rect, btn_logout_rect = ui.popup_renderer.draw_home_option(screen)
 
         elif game_state == "CONFIRM_EXIT":
             btn_cfm_yes, btn_cfm_no = ui.popup_renderer.draw_confirm_menu(screen)
@@ -209,7 +218,29 @@ def main():
                     show_help = True
                     
                 # --- XỬ LÍ SỰ KIỆN THEO TỪNG TRẠNG THÁI 
-                if game_state == "CONFIRM_EXIT":
+                if game_state == "HOME_OPTION":
+                    if btn_quit_rect and btn_quit_rect.collidepoint(mouse_pos):
+                        game_state = "CONFIRM_EXIT"
+                    
+                    elif btn_logout_rect and btn_logout_rect.collidepoint(mouse_pos):
+                        if game.result == "":
+                            game.save_state(user_name, time_flow)
+
+                        game.reset_game()
+                        user_name = ""
+                        user_pass = ""
+                        auth_error = ""
+                        game_state = "MENU"
+                        
+                        is_timer_running = False
+                        time_flow = 0
+                    # Bấm ra ngoài -> Quay lại chơi
+                    else:
+                        game_state = "PLAYING"
+                        start_ticks = pygame.time.get_ticks() - (time_flow * 1000)
+                        is_timer_running = True
+                    
+                elif game_state == "CONFIRM_EXIT":
                     # Nếu ấn YES -> HỦY VÁN CHƠI và về Menu
                     if btn_cfm_yes and btn_cfm_yes.collidepoint(mouse_pos):
                         # 1. Xóa file save cũ (coi như bỏ cuộc ván này)
@@ -302,7 +333,7 @@ def main():
 
                     # Nút home
                     if btn_home_rect and btn_home_rect.collidepoint(mouse_pos):
-                        game_state = "CONFIRM_EXIT"
+                        game_state = "HOME_OPTION"
 
                 elif game_state == "ASK RESUME":
                     if btn_ask_resume and btn_ask_resume.collidepoint(mouse_pos):

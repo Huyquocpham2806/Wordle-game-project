@@ -497,6 +497,41 @@ class Popuprender:
 
         return btn_yes, btn_no
     
+    # 11. Vẽ menu khi chọn home
+    def draw_home_option(self, screen):
+        screen.blit(self.dim_surface, (0, 0))
+
+        center_x, center_y = WIDTH//2, HEIGHT//2
+        rect = pygame.Rect(0, 0, 500, 300)
+        rect.center = (center_x, center_y)
+
+        rect.y = 30
+        pygame.draw.rect(screen, white, rect, border_radius=15)
+        pygame.draw.rect(screen, gray, rect, 3, border_radius=15)
+
+        # Tiêu đề
+        title = self.font_key.render("PAUSED", True, black)
+        screen.blit(title, title.get_rect(center=(center_x, rect.y + 40)))
+
+        # Nút QUIT (Về chọn chế độ)
+        btn_quit_level = pygame.Rect(0, 0, 200, 50)
+        btn_quit_level.center = (center_x, rect.y + 100)
+        pygame.draw.rect(screen, orange, btn_quit_level, border_radius=10)
+        
+        txt_quit = self.font_res.render("Quit", True, white)
+        screen.blit(txt_quit, txt_quit.get_rect(center=btn_quit_level.center))
+
+        # Nút LOG OUT
+        btn_logout = pygame.Rect(0, 0, 200, 50)
+        btn_logout.center = (center_x, rect.y + 160)
+        pygame.draw.rect(screen, red, btn_logout, border_radius=10)
+        
+        txt_logout = self.font_res.render("Log Out", True, white)
+        screen.blit(txt_logout, txt_logout.get_rect(center=btn_logout.center))
+
+        # Trả về 2 nút để xử lý bấm chuột
+        return btn_quit_level, btn_logout    
+
 # Lớp chính quản lý giao diện, gọi các lớp con để vẽ từng phần của giao diện
 class WordleUI:
     def __init__(self, screen):
