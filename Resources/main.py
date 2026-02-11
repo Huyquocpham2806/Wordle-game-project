@@ -411,12 +411,19 @@ def main():
                         auth_error = "" # xóa lỗi khi gõ lại 
 
                     else:
-                        # Chỉ nhận kí tự và số và độ dài không quá 20 để dễ quản lí
-                        if event.unicode.isalnum():
-                            if active_field == 0 and len(user_name) < 20:
-                                user_name += event.unicode
-                            elif active_field == 1 and len(user_pass) < 20:
-                                user_pass += event.unicode
+                        char = event.unicode # Lấy kí tự vừa nhấn
+                        
+                        # Nhập TÊN (Chỉ chữ, số, gạch dưới)
+                        if active_field == 0:
+                            # Chỉ cho phép chữ, số và dấu "_" 
+                            if (char.isalnum() or char == "_") and len(user_name) < 20:
+                                user_name += char
+
+                        # Nhập Pass (ho phép @, #, !,...)
+                        elif active_field == 1:
+                            # isprintable() chấp nhận mọi ký tự in được ra màn hình
+                            if char.isprintable() and len(user_pass) < 20:
+                                user_pass += char
 
                 # --- XỬ LÍ KHI GAME OVER ---
                 elif game_state == "GAME OVER":
