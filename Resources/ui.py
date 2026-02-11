@@ -235,6 +235,9 @@ class Popuprender:
         nm_surf = self.font_key.render(name, True, black)
         screen.blit(nm_surf, (name_rect.x + 10, name_rect.y + 10))
 
+        lbl_name = self.font_res.render("Name", True, gray)
+        screen.blit(lbl_name, (name_rect.x, name_rect.y - 25))
+
         # Vẽ ô nhập Pass
         pass_rect = pygame.Rect(0, 0, 300, 50)
         pass_rect.center = (center_x, center_y + 50)
@@ -251,13 +254,10 @@ class Popuprender:
         lbl_pass = self.font_res.render("Password:", True, gray)
         screen.blit(lbl_pass, (pass_rect.x, pass_rect.y - 25))
 
-        # Hiện thông báo lỗi hoặc nút gợi ý bấm enter
+        # Hiện thông báo lỗi
         if err_msg:
             err_surf = self.font_res.render(err_msg, True, red)
             screen.blit(err_surf, err_surf.get_rect(center= (center_x, center_y + 100)))
-        else:
-            hint = self.font_res.render("ENTER", True, green)
-            screen.blit(hint, hint.get_rect(center= (center_x, center_y + 100)))
 
         # Vẽ một nút nhỏ màu xám
         btn_back = pygame.Rect(panel_rect.right - 75, panel_rect.y + 15, 60, 30)
