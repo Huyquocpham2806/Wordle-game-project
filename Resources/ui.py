@@ -235,9 +235,6 @@ class Popuprender:
         nm_surf = self.font_key.render(name, True, black)
         screen.blit(nm_surf, (name_rect.x + 10, name_rect.y + 10))
 
-        lbl_name = self.font_res.render("Name", True, gray)
-        screen.blit(lbl_name, (name_rect.x, name_rect.y - 25))
-
         # Vẽ ô nhập Pass
         pass_rect = pygame.Rect(0, 0, 300, 50)
         pass_rect.center = (center_x, center_y + 50)
