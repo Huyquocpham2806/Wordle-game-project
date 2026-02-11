@@ -1,0 +1,8 @@
+# Bỏ qua các file biên dịch của Python (Rác)
+__pycache__/
+*.pyc
+
+# Bỏ qua file save game của cá nhân bạn (Để người khác tải về có game sạch)
+# Giả sử file save của bạn nằm trong thư mục data hoặc cùng cấp
+last_play.txt
+leaderboard.txt
