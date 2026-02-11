@@ -104,7 +104,7 @@ class WordleGame:
         - Vòng 1: Tìm màu XANH (Đúng ký tự, đúng vị trí).
         - Vòng 2: Tìm màu VÀNG (Đúng ký tự, sai vị trí) và XÁM (Sai).
         """
-
+        
         result_colors = [gray]*5    # Mặc định là phím ảo màu xám
         ans_letter = list(self.ans) # Tạo danh sách các kí tự có trong đáp án
 
