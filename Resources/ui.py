@@ -262,7 +262,15 @@ class Popuprender:
             hint = self.font_res.render("ENTER", True, green)
             screen.blit(hint, hint.get_rect(center= (center_x, center_y + 100)))
 
-        return name_rect, pass_rect
+        # Vẽ một nút nhỏ màu xám
+        btn_back = pygame.Rect(panel_rect.right - 75, panel_rect.y + 15, 60, 30)
+        pygame.draw.rect(screen, light_gray, btn_back, border_radius=5)
+        
+        # Vẽ kí hiệu <--Back
+        txt_back = self.font_res.render("<-", True, black)
+        screen.blit(txt_back, txt_back.get_rect(center=btn_back.center))
+
+        return name_rect, pass_rect, btn_back
 
     # 5. Vẽ bảng xếp hạng
     def draw_leaderboard(self, screen, scores):

@@ -69,6 +69,7 @@ def main():
 
     inp_name_rect = None
     inp_pass_rect = None
+    btn_back_auth = None
 
     # Biến menu mode và diff
     btn_math = None
@@ -148,7 +149,7 @@ def main():
                 title = "LOGIN FORM"
             else:
                 title = "REGISTER FORM"
-            inp_name_rect, inp_pass_rect = ui.popup_renderer.draw_logre_form(screen, user_name, user_pass, active_field, auth_error, title)
+            inp_name_rect, inp_pass_rect, btn_back_auth = ui.popup_renderer.draw_logre_form(screen, user_name, user_pass, active_field, auth_error, title)
 
         elif game_state == "SELECT_MODE":
             btn_math, btn_word = ui.popup_renderer.draw_mode_selection(screen)
@@ -280,6 +281,13 @@ def main():
                         active_field = 0
                     elif inp_pass_rect and inp_pass_rect.collidepoint(mouse_pos):
                         active_field = 1
+                    elif btn_back_auth and btn_back_auth.collidepoint(mouse_pos):
+                        game_state = "MENU"
+
+                        user_name = ""
+                        user_pass = ""
+                        auth_error = ""
+                        active_field = 0
 
                 elif game_state == "SELECT_MODE":
                     if btn_math and btn_math.collidepoint(mouse_pos):
