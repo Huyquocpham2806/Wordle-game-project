@@ -29,13 +29,12 @@ Dự án tập trung vào việc áp dụng các kiến thức nền tảng như
 Cấu trúc mã nguồn trong thư mục `Resources`:
 
 * **`main.py`**: Entry point của chương trình, quản lý vòng lặp chính (Game Loop) và điều hướng các trạng thái (State Machine).
-* **`game_logic.py`**: Chứa class `WordleGame` xử lý logic cốt lõi (kiểm tra từ, so khớp màu sắc, quản lý lượt chơi) cho cả 2 chế độ Math và Word.
+* **`game_logic.py`**: Chứa class `WordleGame` xử lý logic chính của game (kiểm tra từ, so khớp màu sắc, quản lý lượt chơi) cho cả 2 chế độ Math và Word.
 * **`ui.py`**: Quản lý toàn bộ việc vẽ giao diện (Render), các popup, bảng, và hiệu ứng hình ảnh.
 * **`score_manager.py`**: Quản lý hệ thống người chơi, đăng nhập/đăng ký và bảng xếp hạng (Leaderboard). **(Sử dụng Linked List tự cài đặt)**.
-* **`resume.py`**: Xử lý lưu/tải trạng thái game (Save/Load game).
+* **`resume.py`**: Xử lý lưu/tải trạng thái ván game cũ của người chơi.
 * **`security.py`**: Module mã hóa/giải mã dữ liệu save game và thông tin người dùng **(Sử dụng thuật toán XOR)**.
 * **`settings.py`**: Chứa các hằng số cấu hình (Màu sắc, kích thước, FPS...).
-* **`data/`**: Thư mục chứa tài nguyên (font chữ, file dữ liệu từ vựng `word.txt`, `math_dataset.txt`, file save...).
 
 ---
 
@@ -53,7 +52,7 @@ Cấu trúc mã nguồn trong thư mục `Resources`:
 
 ---
 
-## 4. Điểm nhấn kỹ thuật (Technical Highlights)
+## 4. Các kỹ thuật được sử dụng 
 
 Theo yêu cầu của đồ án, em đã **tự cài đặt** các thành phần cốt lõi sau mà không phụ thuộc vào thư viện có sẵn:
 
@@ -95,5 +94,4 @@ Dưới đây là bảng tự đánh giá mức độ hoàn thành các chức n
 ---
 
 ## 6. Video Demo
-
-*(Bạn có thể chèn link video demo tại đây hoặc để file video trong thư mục nộp bài)*
+Video demo được đính kèm trong folder Resources 
