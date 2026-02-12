@@ -19,7 +19,7 @@ Dự án tập trung vào việc áp dụng các kiến thức nền tảng như
 **Ghi chú về AI:** Trong quá trình thực hiện, em có sử dụng AI làm công cụ hỗ trợ học tập để:
 * Tiếp cận nhanh thư viện **Pygame** (do chưa từng sử dụng trước đây).
 * Tham khảo nguyên lý thuật toán mã hóa **XOR**.
-* Gợi ý cách tổ chức cấu trúc thư mục (clean architecture) và phương pháp kiểm thử (testing).
+* Gợi ý cách tổ chức cấu trúc thư mục và phương pháp kiểm thử.
 * *Toàn bộ mã nguồn logic và cấu trúc dữ liệu đều do em tự cài đặt và kiểm soát.*
 
 ---
